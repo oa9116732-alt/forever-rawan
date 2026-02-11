@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رسالة لروان ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ff4e8a, #8e2de2);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* الرسالة */
+#message {
+  font-size: 32px;
+  font-weight: bold;
+  width: 90%;
+  margin: 100px auto 40px;
+  line-height: 1.8;
+  min-height: 300px;
+}
+
+/* الصور المربعة */
+.square-images {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.img-box {
+  text-align: center;
+}
+
+.img-box img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.6);
+  transition: 0.4s;
+}
+
+.img-box img:hover {
+  transform: scale(1.1);
+}
+
+.img-box p {
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* القلوب المتحركة */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-800px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="typingSound" src="love.mp3"></audio>
+
+<div id="message"></div>
+
+<div class="square-images">
+  <div class="img-box">
+    <img src="rawan.jpg" alt="Rawan">
+    <p>روان</p>
+  </div>
+
+  <div class="img-box">
+    <img src="omar.jpg" alt="Omar">
+    <p>عمر</p>
+  </div>
+</div>
+
+<script>
+const text = "روان انتي اجمل حاجه حصلت في حياتي وجودك جنبي نعمه كبيره بحمد ربنا عليها كل يوم انتي الامان والحنان والضحكه اللي بتنور قلبي انا بحبك بطريقه مش قادر اوصفها بالكلام بس كل اللي اقدر اقوله اني نفسي افضل جنبك طول العمر واشوف عيونك دايما مبسوطه وانتي اجمل بنت في الدنيا كلها بالنسبالي";
+
+const messageDiv = document.getElementById("message");
+const sound = document.getElementById("typingSound");
+
+let i = 0;
+
+function typeWriter() {
+  if (i < text.length) {
+    messageDiv.innerHTML += text.charAt(i);
+    sound.play();
+    i++;
+    setTimeout(typeWriter, 80); // سرعة الكتابة
+  }
+}
+
+typeWriter();
+
+/* قلوب متحركة */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>

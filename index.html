@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Private Login ❤️</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffb6d5,#ff8ccf);
+  font-family:Arial;
+  transition:opacity 0.7s ease;
+}
+.fade{
+  opacity:0;
+}
+.box{
+  background:white;
+  padding:45px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+input{
+  padding:15px;
+  font-size:20px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  margin-bottom:15px;
+}
+button{
+  padding:12px 25px;
+  font-size:20px;
+  border:none;
+  border-radius:10px;
+  background:#ff8ccf;
+  color:white;
+  cursor:pointer;
+}
+.loader{
+  margin-top:15px;
+  display:none;
+  font-size:18px;
+  color:#ff4da6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>ادخل الباسورد ❤️</h2>
+  <input type="password" id="pass" placeholder="الباسورد">
+  <br>
+  <button onclick="login()">دخول</button>
+  <div class="loader" id="load">جاري الدخول ... 💖</div>
+</div>
+
+<script>
+function login(){
+  if(document.getElementById("pass").value==="1234"){
+    document.getElementById("load").style.display="block";
+    setTimeout(()=>{
+      document.body.classList.add("fade");
+    },800);
+    setTimeout(()=>{
+      window.location.href="message.html";
+    },1500);
+  }else{
+    alert("الباسورد غلط");
+  }
+}
+</script>
+
+</body>
+</html>
