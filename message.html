@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Forever Rawan ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  color:#fff;
+  text-align:center;
+  padding:30px;
+  overflow:hidden;
+  opacity:0;
+  transition:opacity 1.5s ease;
+  background:radial-gradient(circle at top,#1a0033,#000010 70%);
+}
+.show{opacity:1}
+
+/* نجوم */
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+  from{opacity:0.3}
+  to{opacity:1}
+}
+
+/* Welcome */
+#welcome{
+  font-size:55px;
+  margin-top:40px;
+  color:#ff8ccf;
+  text-shadow:0 0 20px #ff4da6;
+  animation:glow 2s infinite alternate;
+}
+@keyframes glow{
+  from{text-shadow:0 0 10px #ff4da6}
+  to{text-shadow:0 0 30px #ff99dd}
+}
+
+/* الصور */
+.photos{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin:35px 0;
+}
+.photos img{
+  width:230px;
+  height:230px;
+  border-radius:50%;
+  border:5px solid #ff4da6;
+  object-fit:cover;
+  box-shadow:0 0 30px #ff4da6;
+}
+
+/* الرسالة */
+#msg{
+  font-size:40px;
+  line-height:2.1;
+  max-width:1000px;
+  margin:auto;
+  white-space:pre-wrap;
+  text-shadow:0 0 15px rgba(255,100,200,0.6);
+}
+#msg::after{
+  content:"|";
+  animation:blink 0.7s infinite;
+}
+@keyframes blink{
+  0%,50%,100%{opacity:1}
+  25%,75%{opacity:0}
+}
+.end::after{content:""}
+
+/* قلوب */
+.heart{
+  position:absolute;
+  width:18px;
+  height:18px;
+  background:#ff4da6;
+  transform:rotate(45deg);
+  animation:float 6s linear infinite;
+}
+.heart::before,
+.heart::after{
+  content:"";
+  position:absolute;
+  width:18px;
+  height:18px;
+  background:#ff4da6;
+  border-radius:50%;
+}
+.heart::before{top:-9px}
+.heart::after{left:9px}
+
+@keyframes float{
+  0%{bottom:-20px;opacity:1}
+  100%{bottom:100%;opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div id="welcome">Welcome Rawan ❤️</div>
+
+<div class="photos">
+  <img src="love.jpg">
+  <img src="me.jpg">
+</div>
+
+<div id="msg"></div>
+
+<audio id="sound" src="type.mp3"></audio>
+
+<script>
+
+/* دخول ناعم */
+window.onload=function(){
+  document.body.classList.add("show");
+  createStars();
+  setTimeout(startTyping,3000);
+}
+
+/* نجوم */
+function createStars(){
+  for(let i=0;i<120;i++){
+    let star=document.createElement("div");
+    star.className="star";
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
+    star.style.animationDuration=(1+Math.random()*2)+"s";
+    document.body.appendChild(star);
+  }
+}
+
+/* الرسالة */
+const text=`روان انا عمري ما كنت بعرف اكتب كلام حب بس من اول ما دخلتي حياتي وانا حاسس ان كل حاجة اتغيرت وكل يوم بحس ان قلبي بيكبر من كتر الحب ليكي انتي مش بس حبيبة انتي اجمل حاجة حصلتلي في حياتي ابتسامتك بتخلي كل همومي تختفي وكلامك بيدفيني وكل لحظة معاك بحس فيها بالامان انتي نعمة ربنا في حياتي وانا بحمده كل يوم عليكي وعايزك تطمني اني عمري ما هسيبك ومهما حصل هافضل جنبك واحبك واحميكي من اي حاجة تضايقك انتي قلبي وروحي وكل حياتي وكل يوم بحبك اكتر من اليوم اللي قبله وهفضل احبك طول عمري`;
+
+let i=0;
+function startTyping(){
+  typeText();
+}
+
+function typeText(){
+  if(i<text.length){
+    document.getElementById("msg").innerHTML+=text[i];
+    let s=document.getElementById("sound");
+    s.currentTime=0;
+    s.play();
+    i++;
+    setTimeout(typeText,110);
+  }else{
+    document.getElementById("msg").classList.add("end");
+  }
+}
+
+/* قلوب */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.style.left=Math.random()*100+"%";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},500);
+
+</script>
+
+</body>
+</html>
